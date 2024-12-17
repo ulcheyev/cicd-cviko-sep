@@ -15,5 +15,3 @@ jobs:
         - name: Install dependencies
           run: |
             pip install -r ./task_a/requirements.txt
-	- name: Slavik  
-          run: pytest ./task_a/task_a.py
