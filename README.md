@@ -43,19 +43,19 @@ Sources for practice lecture about containers used in NSWI026 MFF UK and SEPA4M3
 
 9. Try a manual workflow "task-b manual".
 10. Build a docker image, using `docker/build-push-action`, you could reuse following lines
-  - Create an workflow input `tag` for image tag
-  - Tag image like ghcr.io/${{ github.repository }}:${{ inputs.tag }}
+      - Create an workflow input `tag` for image tag
+      - Tag image like `ghcr.io/${{ github.repository }}:${{ inputs.tag }}`
 11. Build a dependent job `test`
-  - It should depend on `docker` job
-  - It should run docker container from previous step as [service container](https://docs.github.com/en/actions/using-containerized-services/about-service-containers)
-  - Call `curl 127.0.0.1:8080/index.html` to fetch `index.html`
+      - It should depend on `docker` job
+      - It should run docker container from previous step as [service container](https://docs.github.com/en/actions/using-containerized-services/about-service-containers)
+      - Call `curl 127.0.0.1:8080/index.html` to fetch `index.html`
 
 ### Build our flight-log
 
 12. Get own repository for FlightLog 
-  - CI - Test application on pull-request
-    - Java - `mvn test`
-    - .NET - https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-net#building-and-testing-your-code
-  - CD - Build a docker image on push to master / develop 
-    - Java - https://spring.io/guides/topicals/spring-boot-docker/
-    - .NET - https://learn.microsoft.com/en-us/dotnet/core/docker/build-container
+      - CI - Test application on pull-request
+        - Java - `mvn test`
+        - .NET - https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-net#building-and-testing-your-code
+      - CD - Build a docker image on push to master / develop 
+        - Java - https://spring.io/guides/gs/spring-boot-docker
+        - .NET - https://learn.microsoft.com/en-us/dotnet/core/docker/build-container
