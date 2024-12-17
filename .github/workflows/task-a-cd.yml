@@ -1,21 +1,24 @@
 name: task-a cd
-
-on: [push]
-
+'on':
+  - push
 jobs:
   test:
-    runs-on: "ubuntu-latest"
+    runs-on: ubuntu-latest
     name: pytest
     steps:
-        - uses: actions/checkout@v4
-        - name: Set up Python
-          uses: actions/setup-python@v5
-          with:
-            python-version: '3.11'
-            cache: 'pip'
-        - name: Install dependencies
-          run: |
-            pip install -r ./task_a/requirements.txt
-        - name: Test
-          run: |
-            pytest ./task_a/task_a.py
+      - uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: pip
+      - name: Install dependencies
+        run: |
+          pip install -r ./task_a/requirements.txt
+      - name: Test
+        run: |
+          pytest ./task_a/task_a.py --html=report.html
+      - uses: actions/upload-artifact@v4
+        with:
+          name: report
+          path: report.html
