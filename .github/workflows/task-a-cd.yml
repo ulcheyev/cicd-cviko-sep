@@ -3,7 +3,22 @@ name: task-a cd
   - push
 jobs:
   test:
-    runs-on: ubuntu-latest
+    runs-on: '${{ matrix.os }}'
+strategy:
+  matrix:
+    os:
+      - ubuntu-latest
+      - macos-latest
+      - windows-latest
+    python-version:
+      - '3.10'
+      - '3.11'
+      - pypy3.10
+    exclude:
+      - os: macos-latest
+        python-version: '3.10'
+      - os: windows-latest
+        python-version: '3.10'
     name: pytest
     steps:
       - uses: actions/checkout@v4
@@ -20,5 +35,6 @@ jobs:
           pytest ./task_a/task_a.py --html=report.html
       - uses: actions/upload-artifact@v4
         with:
-          name: report
+          name: 'report ${{ strategy.job-index}}'
           path: report.html
+
