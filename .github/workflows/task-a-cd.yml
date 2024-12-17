@@ -1,40 +1,34 @@
 name: task-a cd
-'on':
-  - push
+
+on: [push]
+
 jobs:
   test:
-    runs-on: '${{ matrix.os }}'
-strategy:
-  matrix:
-    os:
-      - ubuntu-latest
-      - macos-latest
-      - windows-latest
-    python-version:
-      - '3.10'
-      - '3.11'
-      - pypy3.10
-    exclude:
-      - os: macos-latest
-        python-version: '3.10'
-      - os: windows-latest
-        python-version: '3.10'
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest, macos-latest, windows-latest]
+        python-version: ["3.10", "3.11", "pypy3.10"]
+        exclude:
+          - os: macos-latest
+            python-version: "3.10"
+          - os: windows-latest
+            python-version: "3.10"
     name: pytest
     steps:
-      - uses: actions/checkout@v4
-      - name: Set up Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: '3.11'
-          cache: pip
-      - name: Install dependencies
-        run: |
-          pip install -r ./task_a/requirements.txt
-      - name: Test
-        run: |
-          pytest ./task_a/task_a.py --html=report.html
-      - uses: actions/upload-artifact@v4
-        with:
-          name: 'report ${{ strategy.job-index}}'
-          path: report.html
-
+        - uses: actions/checkout@v4
+        - name: Set up Python
+          uses: actions/setup-python@v5
+          with:
+            python-version: '3.11'
+            cache: pip
+        - name: Install dependencies
+          run: |
+            pip install -r ./task_a/requirements.txt
+        - name: Test
+          run: |
+            pytest ./task_a/task_a.py --html=report.html
+        - uses: actions/upload-artifact@v4
+          with: 
+            name: my-artifact-${{ strategy.job-index }}
+            path: report.html
