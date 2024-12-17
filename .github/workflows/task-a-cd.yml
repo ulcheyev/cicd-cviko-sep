@@ -13,6 +13,6 @@ jobs:
           with:
             python-version: '3.11'
         - name: Install dependencies
-          run: |
-            pip install -r ./task_a/requirements.txt
-        # TODO: run pytest
+          run: pip install -r ./task_a/requirements.txt && 
+        - name: Pytest
+	  run: pytest ./task_a/task_a.py
