@@ -5,7 +5,8 @@ Sources for practice lecture about containers used in NSWI026 MFF UK and SEPA4M3
 ## Tasks
 
 1. Take a look on basic usage of GitHub workflows.
-    - https://docs.github.com/en/actions/examples/using-scripts-to-test-your-code-on-a-runner
+    - https://web.archive.org/web/20240119131452/https://docs.github.com/en/actions/examples/using-scripts-to-test-your-code-on-a-runner
+    - https://docs.github.com/en/actions/quickstart
 
 2. Take a look on script in `task_a`.
     - (Optional) Prepare an env `python3 -m venv venv`, activate it `source venv/bin/activate` and install dependencies `pip3 install -r requirements.txt`.
