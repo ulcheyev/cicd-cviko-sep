@@ -8,7 +8,7 @@ Sources for practice lecture about containers used in NSWI026 MFF UK and SEPA4M3
     - https://web.archive.org/web/20240119131452/https://docs.github.com/en/actions/examples/using-scripts-to-test-your-code-on-a-runner
     - https://docs.github.com/en/actions/quickstart
 
-2. Take a look on script in `task_a`.
+2. Take a look on script in `task_a`. Try it locally:
     - (Optional) Prepare an env `python3 -m venv venv`, activate it `source venv/bin/activate` and install dependencies `pip3 install -r requirements.txt`.
     - (Optional) Try to execute tests `pytest task_a.py`.
 
@@ -19,7 +19,7 @@ Sources for practice lecture about containers used in NSWI026 MFF UK and SEPA4M3
 4. Try to speed up testing using cache on one of following methods.
     - Using `cache: 'pip'` in [`actions/setup-python`](https://github.com/actions/setup-python?tab=readme-ov-file#caching-packages-dependencies)
     - Using [`actions/cache`](https://github.com/actions/cache)
-5. Generate an html report with `--html=report.html` and upload it to GitHub using [`actions/upload-artifact`](https://github.com/actions/upload-artifact)
+5. Generate an html report for PyTest with `--html=report.html` and upload it to GitHub using [`actions/upload-artifact`](https://github.com/actions/upload-artifact)
 6. Run tests on multiple operating systems and Python versions using matrix option.
     ```yml
     runs-on: ${{ matrix.os }}
